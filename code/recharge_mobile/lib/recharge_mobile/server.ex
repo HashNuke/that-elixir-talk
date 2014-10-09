@@ -17,22 +17,34 @@ defmodule RechargeMobile.Server do
     Hound.start_session
 
     navigate_to "http://paytm.com"
-    find_element(:id, "mobileNumber") |> fill_field("#{number}")
-    find_element(:id, "amount") |> fill_field("#{amount}")
-    find_element(:name, "isFastForward") |> click
 
-    click({:class, "proceedButton"})
+    find_element(:css,  "#mobileNumber")
+    |> fill_field("#{number}")
+
+    find_element(:css,  "#amount")
+    |> fill_field("#{amount}")
+
+    find_element(:name, "isFastForward")
+    |> click
+
+    click({:css, ".proceedButton"})
 
     :timer.sleep(1000)
+    focus_frame(2)
 
-    find_element(:id, "mobileNumber")   |> fill_field(paytm_email)
-    find_element(:id, "password") |> fill_field(paytm_password)
+    find_element(:css, "#mobileNumber")
+    |> fill_field(paytm_email)
 
-    find_element(:class, "proceedButton") |> click
+    find_element(:css, "#password")
+    |> fill_field(paytm_password)
 
-    find_element(:text, "Confirm") |> click
+    find_element(:css, ".proceedButton")
+    |> click
 
-    # Hound.end_session
+    find_element(:css, "#walletForm input[type=submit]")
+    |> click
+
+    Hound.end_session
     {:reply, :ok, state}
   end
 
