@@ -19,7 +19,9 @@ defmodule Playground.Mixfile do
     [
       {:earmark, "~> 0.1", only: :dev},
       {:ex_doc, "~> 0.6",  only: :dev},
-      {:poison, "~> 1.2.0"}
+      {:poison, "~> 1.2.0"},
+      {:cowboy, "~> 1.0.0"},
+      {:plug, "~> 0.8.0"}
     ]
   end
 end
