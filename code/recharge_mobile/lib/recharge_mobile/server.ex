@@ -44,7 +44,7 @@ defmodule RechargeMobile.Server do
     find_element(:css, "#walletForm input[type=submit]")
     |> click
 
-    Hound.end_session
+    # Hound.end_session
     {:reply, :ok, state}
   end
 
